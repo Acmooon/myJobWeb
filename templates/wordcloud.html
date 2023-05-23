@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block body %}
+<script src="https://code.highcharts.com.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="static/js/echarts.js"></script>
+<script src="static/js/echarts-wordcloud.js"></script>
+<script src="static/js/echarts-wordcloud.min.js"></script>
+
+
+<div id="appnox-latest-blog-area" class="appnox-latest-blog-area mt-100 mb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 wow fadeInUp pr-45">
+                        <div class="commentlist" style="height: 400px;" id="jobTitleCloud"></div>
+                        <br>
+                        <div class="commentlist" style="height: 400px;" id="comAttrCloud"></div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 ">
+                        <div class="sm-mt-30">
+                            <img src="static/picture/nanxn.png" alt="" >
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+<script>
+    $(function(){
+        jobTitleCloud();
+    });
+    function jobTitleCloud(){
+        var jobTitleChart = echarts.init(document.getElementById('jobTitleCloud'));
+        jobTitleChart.setOption({
+            title: {
+                text: '职位关键词词云图',
+                textStyle:{
+                        color:"#000",
+                        fontFamily:"STCAIYUN",
+                        fontSize:"29px",
+                    }
+            },
+            tooltip: {},
+            toolbox: {},
+            series: [{
+                type : 'wordCloud',  //类型为字符云
+                shape:'smooth',  //平滑
+                gridSize : 8, //网格尺寸
+                {#size : ['100%','100%'],#}
+                sizeRange : [ 15, 85 ],
+                rotationRange : [0,0], //旋转范围
+                drawOutOfBound: false,
+                textStyle : {
+                    fontFamily:'微软雅黑',
+                    color: "#ff7e94",
+
+                },
+                left: 'center',
+                top: 'center',
+                right: null,
+                bottom: null,
+                width:'100%',
+                height:'70%',
+                data:[
+                    {% for jt in datas[0] %}
+                    {"name": '{{jt[0]}}', "value": {{ jt[1] }} },
+                    {% endfor %}
+                ],
+            }]
+        });
+    }
+</script>
+<script>
+    $(function(){
+        echartsCloud();
+    });
+    function echartsCloud(){
+        var myChart = echarts.init(document.getElementById('comAttrCloud'));
+        myChart.setOption({
+            title: {
+                text: '公司发展领域词云图',
+                textStyle:{
+                        color:"#000",
+                        fontFamily:"STCAIYUN",
+                        fontSize:"29px",
+
+                    },
+            },
+            tooltip: {},
+            toolbox: {},
+            series: [{
+                type : 'wordCloud',  //类型为字符云
+                shape:'smooth',  //平滑
+                gridSize : 8, //网格尺寸
+                {#size : ['100%','100%'],#}
+                sizeRange : [ 15, 85 ],
+                rotationRange : [0,0], //旋转范围
+                drawOutOfBound: false,
+                textStyle : {
+                    fontFamily:'微软雅黑',
+                    color: "#ffc07a",
+
+                },
+                left: 'center',
+                top: 'center',
+                right: null,
+                bottom: null,
+                width:'100%',
+                height:'70%',
+                data:[
+                    {% for ca in datas[1] %}
+                    {"name": '{{ca[0]}}', "value": {{ ca[1] }} },
+                    {% endfor %}
+                ],
+            }]
+        });
+    }
+</script>
+<br>
+<!-- footer area start -->
+<footer id="appnox-footer-area" class="appnox-footer-area pt-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="footer-copyright text-center pt-40 pb-40">
+                    <p>ホームページを見終わっておめでとうございます</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer area end -->
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block body %}
+<br>
+<div class="container">
+  <!-- Content here -->
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">职位名称</th>
+        <th scope="col">月薪</th>
+        <th scope="col">地区</th>
+        <th scope="col">学历要求</th>
+        <th scope="col">经验要求</th>
+        <th scope="col">发布时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for jobData in jobDatas %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ jobData.job_title }}</td>
+
+          {% if jobData.salary_min!=0E-10 %}
+            <td>{{ (jobData.salary_min/1000)|round(1) }}k-{{ (jobData.salary_max/1000)|round(1) }}k</td>
+          {% else %}
+            <td>暂未发布</td>
+          {% endif %}
+
+
+          <td>{{ jobData.area_name }}</td>
+          <td>{{ jobData.job_education }}</td>
+          <td>{{ jobData.job_experience }}</td>
+          <td>{{ jobData.job_update }}</td>
+
+
+        </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+
+{% endblock %}

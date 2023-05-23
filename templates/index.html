@@ -1,0 +1,111 @@
+﻿{% extends "base.html" %}
+{% block body %}
+    <!-- main area start -->
+    <main>
+        <!-- hero area start -->
+        <div id="appnox-hero" class="appnox-hero-area hero-bg position-relative">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-8 col-md-12">
+                        <div class="hero-content">
+                            <h2>あなたの<br>招聘<br>数据分析网站</h2>
+                            <p>にこにこに〜 あなたのハートににこにこに～</p>
+                            <div class="hero-btn">
+                                <a href="/search" class="btn btn-type-2">get started</a>
+                                <a href="https://www.51job.com" class="btn btn-type-3">to 51JOB</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="hero-mobile-img wow fadeInRight">
+                            <img src="static/picture/niko.png" alt="">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- hero area end -->
+        <br>
+        <!-- about area start -->
+        <div id="appnox-about-area" class="appnox-about-area pt-100 mb-100">
+            <div class="appnox-about-img wow fadeInLeft">
+                <img src="static/picture/about-1.png" alt=""  />
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 offset-xl-6 col-lg-6 offset-lg-6 col-md-12">
+                        <div class="section-title">
+                            <h3>over 1300+ completed projects still counting.</h3>
+                            <p>dummy text of the printing and typesetting industry. in standard dummy text ever since the</p>
+                        </div>
+                        <div class="about-counter-area">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp">
+                                        <div class="about-single-counter">
+                                            <h2 class="counter">{{ datas[0]+datas[1]+datas[2] }}</h2>
+                                            <span>已爬取数据条数</span>
+                                            <div class="counter-shape">
+                                                <img src="static/picture/shape-1.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp">
+                                        <div class="about-single-counter">
+                                            <h2 class="counter">{{ datas[0] }}</h2>
+                                            <span>已爬取职位信息</span>
+                                            <div class="counter-shape">
+                                                <img src="static/picture/shape-2.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp">
+                                        <div class="about-single-counter">
+                                            <h2 class="counter">{{datas[1]}}</h2>
+                                            <span>已爬取企业信息</span>
+                                            <div class="counter-shape">
+                                                <img src="static/picture/shape-3.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-6 wow fadeInUp">
+                                        <div class="about-single-counter">
+                                            <h2 class="counter">{{datas[2]}}</h2>
+                                            <span>已爬取地区信息</span>
+                                            <div class="counter-shape">
+                                                <img src="static/picture/shape-4.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- about area end -->
+
+        
+        <!-- footer area start -->
+        <footer id="appnox-footer-area" class="appnox-footer-area pt-10">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12">
+                        <div class="footer-copyright text-center pt-40 pb-40">
+                            <p>ホームページを見終わっておめでとうございます</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer area end -->
+    </main>
+    <!-- main area end -->
+{% endblock %}

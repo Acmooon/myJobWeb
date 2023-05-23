@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block body %}
+<!-- 引入 highcharts.js -->
+<script src="http://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+
+<script src="https://code.highcharts.com.cn/jquery/jquery-1.8.3.min.js"></script>
+<script src="static/js/echarts.js"></script>
+<script src="static/js/echarts-wordcloud.js"></script>
+<script src="static/js/echarts-wordcloud.min.js"></script>
+
+<div class="container">
+<!-- 柱状图 -->
+<div id="container_sal" style="min-width: 600px;height:400px;"></div>
+<br>
+<!-- 学历与经验饼图 -->
+<div class="row justify-content-start">
+    <div class="col-6">
+        <div id="container_edu" style="min-width: 600px;height:400px;"></div>
+    </div>
+    <div class="col-6">
+        <div id="container_exp" style="min-width: 600px;height:400px;"></div>
+    </div>
+</div>
+<div class="row justify-content-md-center">
+    <div class="col col-lg-3">
+      <img src="static/picture/LLleft.png" alt="" >
+    </div>
+    <div class="col-md-auto">
+      <div id="container_area" style="min-width: 500px;height:400px;"></div>
+    </div>
+    <div class="col col-lg-3">
+      <img src="static/picture/LLright.png" alt="" >
+    </div>
+</div>
+<!--地区分布饼图-->
+
+</div>
+<br>
+
+<!-- footer area start -->
+<footer id="appnox-footer-area" class="appnox-footer-area pt-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div class="footer-copyright text-center pt-40 pb-40">
+                    <p>ホームページを見終わっておめでとうございます</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer area end -->
+
+<script>
+    // 图表配置
+    var options_sal = {
+        chart: {
+            type: 'column'                          //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+            text: '薪资分布图',                 // 标题
+            style:{
+                color:"#000",
+                fontFamily:"STCAIYUN",
+                fontSize:"29px",
+            }
+        },
+        // subtitle:{
+        //   text:"薪资统计（月）"
+        // },
+        xAxis: {
+            categories: ['{{datas[0][0][0]}}','{{datas[0][1][0]}}','{{datas[0][2][0]}}','{{datas[0][3][0]}}',
+                         '{{datas[0][4][0]}}','{{datas[0][5][0]}}','{{datas[0][6][0]}}','{{datas[0][7][0]}}','{{datas[0][8][0]}}']   // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: '岗位数'                // y 轴标题
+            }
+        },
+        credits:{
+            text:'51job.com',
+            href:'http://www.51job.com'
+        },
+        series: [{                              // 数据列
+            name: '{{datas[4]}}',                        // 数据列名
+            data: [{{datas[0][0][1]}},{{datas[0][1][1]}},{{datas[0][2][1]}},{{datas[0][3][1]}},
+                   {{datas[0][4][1]}},{{datas[0][5][1]}},{{datas[0][6][1]}},{{datas[0][7][1]}},{{datas[0][8][1]}}],                     // 数据
+            color:"#ffc0cb",
+        }]
+    };
+    // 图表初始化函数
+    var chart_sal = Highcharts.chart('container_sal', options_sal);
+</script>
+<!-- 学历与经验饼图 -->
+<script>
+            // 图表配置
+            var options_edu = {
+                chart: {
+                    type: 'pie'                          //指定图表的类型，默认是折线图（line）
+                },
+                title: {
+                    text: '学历要求分布图',                 // 标题
+                    style:{
+                        color:"#000",
+                        fontFamily:"STCAIYUN",
+                        fontSize:"29px",
+                    }
+                },
+                // subtitle:{
+                //   text:"薪资统计（月）"
+                // },
+                credits:{
+                    enabled:false,
+                    text:'51job.com',
+                    href:'http://www.51job.com'
+                },
+                series: [{// 数据列
+                    data:[
+                        {% for edu in datas[2] %}
+                        ['{{edu[0]}}',{{edu[1]}}],
+                        {% endfor %}
+                    ]
+                }]
+            };
+            // 图表初始化函数
+            var chart_edu = Highcharts.chart('container_edu', options_edu);
+        </script>
+<script>
+            // 图表配置
+            var options_exp = {
+                chart: {
+                    type: 'pie'                          //指定图表的类型，默认是折线图（line）
+                },
+                title: {
+                    text: '工作经验要求分布图',                 // 标题
+                    style:{
+                        color:"#000",
+                        fontFamily:"STCAIYUN",
+                        fontSize:"29px",
+                    }
+                },
+                // subtitle:{
+                //   text:"薪资统计（月）"
+                // },
+                credits:{
+                    enabled:false,
+                    text:'51job.com',
+                    href:'http://www.51job.com'
+                },
+                series: [{// 数据列
+                    data:[
+                        {% for exp in datas[3] %}
+                        ['{{exp[0]}}',{{exp[1]}}],
+                        {% endfor %}
+                    ]
+                }]
+            };
+            // 图表初始化函数
+            var chart_exp = Highcharts.chart('container_exp', options_exp);
+        </script>
+<!--地区分布饼图-->
+<script>
+    // 图表配置
+    var options_area = {
+        chart: {
+            type: 'pie'                          //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+            text: '工作地区分布图',                 // 标题
+            style:{
+                color:"#000",
+                fontFamily:"STCAIYUN",
+                fontSize:"29px",
+            }
+        },
+        // subtitle:{
+        //   text:"薪资统计（月）"
+        // },
+        credits:{
+            enabled:false,
+            text:'51job.com',
+            href:'http://www.51job.com'
+        },
+        series: [{// 数据列
+            data:[
+                {% for area in datas[1] %}
+                ['{{area[0]}}',{{area[1]}}],
+                {% endfor %}
+            ]
+        }]
+    };
+    // 图表初始化函数
+    var chart_area = Highcharts.chart('container_area', options_area);
+</script>
+{% endblock %}
+
